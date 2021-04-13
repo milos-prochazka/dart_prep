@@ -2,13 +2,13 @@
 TOHLE JE PRED DEBUGEM
 
 
-//#define debug
-//#if debug
+//-#define DEBUG
+//#if DEBUG
 TOHLE JE DEBUG
 //#else
-TOHLE NENI DEBUG
+//##TOHLE NENI DEBUG
 //#end if line:6
 
 //#debug
-TOHLE JE DEBUG
+//##TOHLE JE DEBUG
 //#end debug line:12

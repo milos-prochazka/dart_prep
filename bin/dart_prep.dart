@@ -25,10 +25,10 @@ void main(List<String> arguments) async
 {
     var args = arguments;
 //#debug
-//##    if (args.isEmpty)
-//##    {
-//##        args = ['.\\'];
-//##    }
+    if (args.isEmpty)
+    {
+        args = ['+DEBUG','test.cfg'];
+    }
 //#end debug line:27
 
 

@@ -106,7 +106,7 @@ class Processor
                     case WordParser.RELEASE_STATEMENT:
                     case WordParser.VERBOSE_STATEMENT:
                         {
-                            var ifWord = word.text.substring(3);
+                            var ifWord = word.text.substring(3).toUpperCase();
                             var ifLine = _aLine+1;
 
                             bool result = wordParser.defines.contains(ifWord);
