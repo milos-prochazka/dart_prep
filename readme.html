@@ -1,0 +1,67 @@
+<h1>dart_prep</h1>
+
+<p>Dart preprocesor slouž&iacute; k podm&iacute;nìn&eacute;mu pøekladu programù v jazyce dart (je komprtibln&iacute; s javou,&nbsp; javascriptem a c#).</p>
+
+<h2>Syntaxe : dart_prep &lt;seznam argumentù&gt;</h2>
+
+<p><strong>Argumenty:</strong></p>
+
+<table border="0" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td>&lt;n&aacute;zev_adres&aacute;øe&gt;</td>
+			<td>Adres&aacute;ø kter&yacute; bude zpracov&aacute;n. Zpracov&aacute;ny budou v&scaron;echny dart soubory ve v&scaron;ech podadres&aacute;ø&iacute;ch,&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&lt;n&aacute;zev_souboru&gt;</td>
+			<td>N&aacute;zev dart souboru kter&yacute; bude zpracov&aacute;n.</td>
+		</tr>
+		<tr>
+			<td>@&lt;n&aacute;zev_souboru&gt;</td>
+			<td>N&aacute;zev konfiguraèn&iacute;ho souboru&nbsp;</td>
+		</tr>
+		<tr>
+			<td>+&lt;definice&gt;</td>
+			<td>Pøid&aacute;n&iacute; definovan&eacute;ho n&aacute;zvu. Tento n&aacute;zev je od sv&eacute; definice považov&aacute;n za existuj&iacute;c&iacute; a v&scaron;echny odkazy na nìj jsou pravdiv&eacute;.&nbsp;</td>
+		</tr>
+		<tr>
+			<td>-&lt;definice&gt;</td>
+			<td>Odstranìn&iacute; dø&iacute;ve definovan&eacute;ho n&aacute;zvu. V&scaron;echny n&aacute;sleduj&iacute;c&iacute; odkazy na nìj budou považov&aacute;ny za nepravdiv&eacute;.</td>
+		</tr>
+		<tr>
+			<td>#&lt;typ_souboru&gt;</td>
+			<td>Nastav&iacute; roz&scaron;&iacute;øen&iacute; (typ souboru) kter&eacute; bude použ&iacute;v&aacute;no pro prohled&aacute;v&aacute;n&iacute; adres&aacute;øù. Implicitn&iacute; hodnota je .dart. Souž&iacute; pro zpracov&aacute;n&iacute; jin&yacute;ch jazykù&nbsp; než dart (#.java pro zpracov&aacute;n&iacute; javy).&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Argumenty se zpracov&aacute;vaj&iacute; postupnì zleva doprava. Zad&aacute;n&iacute; <strong>&acute;dart_prep&nbsp; file1.dart&nbsp; &nbsp;+test&nbsp; file2.dart&acute;</strong> zpracuje&nbsp;<strong>file1.dart</strong> bez definovan&eacute;ho n&aacute;zvu <strong>test </strong>a <strong>file2.dart</strong>&nbsp;s definovan&yacute;m&nbsp;<strong>test</strong>.</p>
+
+<h2>Syntaxe souborù</h2>
+
+<ul>
+	<li>Program oznaèuje ø&aacute;dky vyøezen&eacute; z podm&iacute;nìn&eacute;ho pøekladu koment&aacute;øem <strong>//##</strong>.</li>
+	<li>Prepoprcesor pracuje po ø&aacute;d&iacute;ch, Každ&yacute; pø&iacute;kaz je na zaè&aacute;tku ø&aacute;dku</li>
+	<li>Blok podm&iacute;nìn&eacute;ho pøekladu zaè&iacute;n&aacute; podm&iacute;nkou <strong>//#if &lt;podm&iacute;nka&gt;</strong></li>
+	<li>Blok&nbsp;<strong>//#if</strong> mùže obsahovat nìkolik&nbsp; blokù&nbsp;&nbsp;<strong>//#elif</strong> &lt;podm&iacute;nka&gt; a blok&nbsp;&nbsp;<strong>//#else</strong></li>
+	<li>Blok&nbsp;<strong>//#if&nbsp;</strong>je zakonèen pø&iacute;kazem <strong>//#end</strong>.</li>
+	<li>Je možno použ&iacute;t tak&eacute; jednoduch&eacute;&nbsp;podm&iacute;nky <strong>//#debug</strong> <strong>//#release</strong> a <strong>//#verbose</strong>. Tyto podm&iacute;nky testuj&iacute; existenci pø&iacute;slu&scaron;n&eacute;ho n&aacute;zvu (debug,release a verbose) a nemohou obsahovat else a elif è&aacute;sti.</li>
+	<li>Pro definov&aacute;n&iacute; v n&aacute;zvù v r&aacute;mci souboru se použ&iacute;v&aacute; pø&iacute;kaz <strong>//#define &lt;n&aacute;zvy&gt;</strong>. Zpracov&aacute;n&iacute; konfiguraèn&iacute;ho a bìžn&eacute;ho souboru&nbsp;se li&scaron;&iacute; v tom, že definice v konfiguraèn&iacute;m souboru jsou viditeln&eacute; ve v&scaron;ech pozdìji zpracov&aacute;van&yacute;ch souborech, kdežto definice v bìžn&eacute;m souboru jsou viditeln&eacute; pouze v r&aacute;mci dann&eacute;ho souboru.</li>
+</ul>
+
+<p><strong>Syntaxe podm&iacute;nky&nbsp;if</strong></p>
+
+<ul>
+	<li>Syntaxe podm&iacute;nky if se skl&aacute;d&aacute; z n&aacute;zvù , oper&aacute;torù a z&aacute;vorek.</li>
+	<li>if podporuje oper&aacute;tory <strong>|</strong>&nbsp; (logick&yacute; souèet) a&nbsp; <strong>&amp;</strong> (logick&yacute; souèin). Logick&yacute; souèin m&aacute; vy&scaron;&scaron;&iacute; prioritu).</li>
+	<li>V r&aacute;mci if je možno použ&iacute;t tak&eacute; negaci (<strong>!</strong>),&nbsp;pro negov&aacute;n&iacute; podm&iacute;nky, z&aacute;vorky a pøeddefinovan&eacute; konstanty (<strong>0, 1, true, false</strong>).</li>
+</ul>
+
+<p><strong>Syntaxe define</strong></p>
+
+<ul>
+	<li>Parametrem define je prost&yacute; seznam definovan&yacute;ch n&aacute;zvù.</li>
+	<li>V r&aacute;mci define je možno pøed n&aacute;yev zapsat !. T&iacute;m se odstran&iacute; dø&iacute;ve definovan&yacute; n&aacute;zev.</li>
+</ul>
+
+<p>&nbsp;</p>
