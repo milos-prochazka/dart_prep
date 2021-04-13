@@ -41,6 +41,7 @@ void main(List<String> arguments) async
     {
         exit(await cmd_main(args));
     }
+  // komentart
 }
 
 Future<int> cmd_main(List<String> args) async
