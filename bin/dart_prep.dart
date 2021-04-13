@@ -29,7 +29,7 @@ void main(List<String> arguments) async
     {
         args = ['+DEBUG','test.cfg'];
     }
-//#end debug line:27
+//#end DEBUG line:27
 
 
     if (args.isEmpty)

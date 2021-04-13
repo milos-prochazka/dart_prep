@@ -166,7 +166,7 @@ class WordParser
             {
 //#debug
                 print("Parse Word: ${_regExTypes[group]}:'$text'");
-//#end debug line:167
+//#end DEBUG line:167
                 result.prev.add(MatchWord(text, _regExTypes[group]));
                 break;
             }

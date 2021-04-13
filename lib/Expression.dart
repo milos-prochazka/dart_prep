@@ -50,7 +50,7 @@ class Expression
 
         _pushOperator(WordParser.ROOT);
 //#if DEBUG
-//##        print('FINAL STACK: ${toString()}');
+        print('FINAL STACK: ${toString()}');
 //#end if line:52
 
         return  (_valueStack.length == 1) ? _valueStack.last : false;
@@ -59,7 +59,7 @@ class Expression
     void writeWord(MatchWord word)
     {
 //#if DEBUG
-//##        print("Write Word: ${WordParser.wordNames[word.type]} '${word.text}'");
+        print("Write Word: ${WordParser.wordNames[word.type]} '${word.text}'");
 //#end if line:61
         if (_needOperator)
         {
@@ -92,7 +92,7 @@ class Expression
         }
 
 //#if DEBUG
-//##        print('STACK: ${toString()}');
+        print('STACK: ${toString()}');
 //#end if line:94
     }
 
@@ -101,7 +101,7 @@ class Expression
     void _pushOperator(int op)
     {
 //#if DEBUG
-//##      print("Push Operator: ${WordParser.wordNames[op]}'");
+      print("Push Operator: ${WordParser.wordNames[op]}'");
 //#end if line:103
 
         if (op == WordParser.CLOSE_BRACKET)
@@ -182,7 +182,7 @@ class Expression
         }
 
 //#if DEBUG
-//##        print('DO OP STACK: ${toString()}');
+        print('DO OP STACK: ${toString()}');
 //#end if line:184
     }
 

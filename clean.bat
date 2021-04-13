@@ -10,6 +10,9 @@ del /q /f /s *.exe
 del /q /f /s *.aot
 del /q /f /s *.jit
 del /q /f /s *.kernel
+git gc
+git gc --aggressive
+git prune
 
 
 
