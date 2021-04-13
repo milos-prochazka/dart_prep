@@ -1,3 +1,5 @@
+rem rd .dart_tool /q /s
+rem del .packages
 del /q /f /s "*.tmp"
 del /q /f /s *.suo
 del /q /f /s *.user
