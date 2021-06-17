@@ -16,7 +16,7 @@ class Processor
     int _aLine = 0;
     var wordParser = WordParser();
     final expression = Expression();
-    final charConstantRegExp = RegExp(r'\/\*\$\\?.\*\/(\s*\(?\s*0[Xx][0-9a-fA-F]+(\s*\)?))?');
+    final charConstantRegExp = RegExp(r'\/\*\$\\?.\*\/((\s*\(\s*0[Xx][0-9a-fA-F]+(\s*\)))|(0[Xx][0-9a-fA-F]+))?');
     final preprocLineRegExp = RegExp(r'^\s*\/\/#(verbose|debug|release|if|end|else|elif|define|#)');
 
     /// Processor
