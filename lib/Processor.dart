@@ -16,6 +16,8 @@ class Processor
     int _aLine = 0;
     var wordParser = WordParser();
     final expression = Expression();
+    final charConstantRegExp = RegExp(r'\/\*\$\\?.\*\/(\s*\(?\s*0[Xx][0-9a-fA-F]+(\s*\)?))?');
+    final preprocLineRegExp = RegExp(r'^\s*\/\/#(verbose|debug|release|if|end|else|elif|define|#)');
 
     /// Processor
     ///
@@ -70,6 +72,69 @@ class Processor
               line = line.replaceFirst('//##', '');
           }
 
+          // Find character constants
+          final matches = charConstantRegExp.allMatches(line);
+
+          // Expand character constants
+          for(final match in matches)
+          {
+              final text = match.input.substring(match.start,match.end);
+              var ch = text.codeUnitAt(3);
+
+              if (ch == /*$\\*/(0x5C))
+              {
+                  var code = -1;
+
+                  switch (ch = text.codeUnitAt(4))
+                  {
+                      case /*$\\*/(0x5C):
+                          code = /*$\\*/(0x5C);
+                          break;
+                      case /*$a*/(0x61):
+                          code = 0x07;
+                          break;
+                      case /*$b*/(0x62):
+                          code = 0x08;
+                          break;
+                      case /*$t*/(0x74):
+                          code = 0x09;
+                          break;
+                      case /*$n*/(0x6E):
+                          code = 0xa;
+                          break;
+                      case /*$v*/(0x76):
+                          code = 0x0b;
+                          break;
+                      case /*$f*/(0x66):
+                          code = 0xc;
+                          break;
+                      case /*$r*/(0x72):
+                          code = 0x0d;
+                          break;
+                      case /*$e*/(0x65):
+                          code = 0x1b;
+                          break;
+                  }
+
+                  if (code>=0)
+                  {
+                    final replace = '/*\$\\${String.fromCharCode(ch)}*/(0x${code.toRadixString(16).toUpperCase()})';
+                    line = line.replaceAll(text, replace);
+                  }
+              }
+              else
+              {
+                  final replace = '/*\$${String.fromCharCode(ch)}*/(0x${ch.toRadixString(16).toUpperCase()})';
+                  line = line.replaceAll(text, replace);
+              }
+          }
+
+          // Macro in the first column
+          if (preprocLineRegExp.firstMatch(line) != null)
+          {
+              line = line.trimLeft();
+          }
+
           _lines[iline] = line;
       }
     }
@@ -109,7 +174,7 @@ class Processor
                             var ifWord = word.text.substring(3).toUpperCase();
                             var ifLine = _aLine+1;
 
-                            bool result = wordParser.defines.contains(ifWord);
+                            final result = wordParser.defines.contains(ifWord);
                             _aLine++;
 
                             processLevel(result,level+1);
@@ -119,7 +184,7 @@ class Processor
 
                             if (word.type != WordParser.END_STATEMENT)
                             {
-                                throw SyntaxException("#end expression not found");
+                                throw SyntaxException('#end expression not found');
                             }
 
                             _lines[_aLine] = '//#end $ifWord line:$ifLine';
@@ -130,8 +195,8 @@ class Processor
                         {
                             var ifLine = _aLine+1;
 
-                            bool result = expression.decodeExpression(word.next);
-                            bool ifTrue = result;
+                            var result = expression.decodeExpression(word.next);
+                            var ifTrue = result;
 
                             _aLine++;
                             processLevel(result,level+1);
@@ -140,7 +205,7 @@ class Processor
                             {
                                 if (_aLine >= _lines.length)
                                 {
-                                    throw SyntaxException("#end expression not found");
+                                    throw SyntaxException('#end expression not found');
                                 }
 
                                 line = _lines[_aLine];
@@ -167,7 +232,7 @@ class Processor
 
                                 if (_aLine >= _lines.length)
                                 {
-                                    throw SyntaxException("#end expression not found");
+                                    throw SyntaxException('#end expression not found');
                                 }
 
                                 line = _lines[_aLine];
@@ -176,7 +241,7 @@ class Processor
 
                             if (word.type != WordParser.END_STATEMENT)
                             {
-                                throw SyntaxException("#end expression not found");
+                                throw SyntaxException('#end expression not found');
                             }
 
                             _lines[_aLine] = '//#end if line:$ifLine';
@@ -226,15 +291,15 @@ class Processor
     @override
     String toString()
     {
-        StringBuffer buffer = StringBuffer();
+        var buffer = StringBuffer();
         buffer.writeAll(_lines,'\r\n');
         return buffer.toString();
     }
 
     void _define(MatchWord word)
     {
-        bool allDone = false;
-        bool remove = false;
+        var allDone = false;
+        var remove = false;
 
         while (!allDone)
         {
@@ -269,6 +334,7 @@ class Processor
         }
     }
 
+//#if false
     bool _if(MatchWord word)
     {
         bool allDone = false;
@@ -302,5 +368,6 @@ class Processor
 
         return result;
     }
+//#end if line:337
 
 }

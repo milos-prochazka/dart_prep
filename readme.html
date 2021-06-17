@@ -1,67 +1,68 @@
 <h1>dart_prep</h1>
 
-<p>Dart preprocesor slouž&iacute; k podm&iacute;nìn&eacute;mu pøekladu programù v jazyce dart (je komprtibln&iacute; s javou,&nbsp; javascriptem a c#).</p>
+<p>Dart preprocesor slouží k podmínìnému pøekladu programù v jazyce dart (je kompatiblní s javou,  javascriptem a c#).</p>
 
-<h2>Syntaxe : dart_prep &lt;seznam argumentù&gt;</h2>
+<h2>Syntaxe : dart_prep <seznam argumentù></h2>
 
 <p><strong>Argumenty:</strong></p>
 
 <table border="0" cellpadding="1" cellspacing="1">
 	<tbody>
 		<tr>
-			<td>&lt;n&aacute;zev_adres&aacute;øe&gt;</td>
-			<td>Adres&aacute;ø kter&yacute; bude zpracov&aacute;n. Zpracov&aacute;ny budou v&scaron;echny dart soubory ve v&scaron;ech podadres&aacute;ø&iacute;ch,&nbsp;</td>
+			<td><název_adresáøe></td>
+			<td>Adresáø který bude zpracován. Zpracovány budou všechny dart soubory ve všech podadresáøích, </td>
 		</tr>
 		<tr>
-			<td>&lt;n&aacute;zev_souboru&gt;</td>
-			<td>N&aacute;zev dart souboru kter&yacute; bude zpracov&aacute;n.</td>
+			<td><název_souboru></td>
+			<td>Název dart souboru který bude zpracován.</td>
 		</tr>
 		<tr>
-			<td>@&lt;n&aacute;zev_souboru&gt;</td>
-			<td>N&aacute;zev konfiguraèn&iacute;ho souboru&nbsp;</td>
+			<td>@<název_souboru></td>
+			<td>Název konfiguraèního souboru </td>
 		</tr>
 		<tr>
-			<td>+&lt;definice&gt;</td>
-			<td>Pøid&aacute;n&iacute; definovan&eacute;ho n&aacute;zvu. Tento n&aacute;zev je od sv&eacute; definice považov&aacute;n za existuj&iacute;c&iacute; a v&scaron;echny odkazy na nìj jsou pravdiv&eacute;.&nbsp;</td>
+			<td>+<definice></td>
+			<td>Pøidání definovaného názvu. Tento název je od své definice považován za existující a všechny odkazy na nìj jsou pravdivé. </td>
 		</tr>
 		<tr>
-			<td>-&lt;definice&gt;</td>
-			<td>Odstranìn&iacute; dø&iacute;ve definovan&eacute;ho n&aacute;zvu. V&scaron;echny n&aacute;sleduj&iacute;c&iacute; odkazy na nìj budou považov&aacute;ny za nepravdiv&eacute;.</td>
+			<td>-<definice></td>
+			<td>Odstranìní døíve definovaného názvu. Všechny následující odkazy na nìj budou považovány za nepravdivé.</td>
 		</tr>
 		<tr>
-			<td>#&lt;typ_souboru&gt;</td>
-			<td>Nastav&iacute; roz&scaron;&iacute;øen&iacute; (typ souboru) kter&eacute; bude použ&iacute;v&aacute;no pro prohled&aacute;v&aacute;n&iacute; adres&aacute;øù. Implicitn&iacute; hodnota je .dart. Souž&iacute; pro zpracov&aacute;n&iacute; jin&yacute;ch jazykù&nbsp; než dart (#.java pro zpracov&aacute;n&iacute; javy).&nbsp;</td>
+			<td>#<typ_souboru></td>
+			<td>Nastaví rozšíøení (typ souboru) které bude používáno pro prohledávání adresáøù. Implicitní hodnota je .dart. Souží pro zpracování jiných jazykù  než dart (#.java pro zpracování javy). </td>
 		</tr>
 	</tbody>
 </table>
 
-<p>Argumenty se zpracov&aacute;vaj&iacute; postupnì zleva doprava. Zad&aacute;n&iacute; <strong>&acute;dart_prep&nbsp; file1.dart&nbsp; &nbsp;+test&nbsp; file2.dart&acute;</strong> zpracuje&nbsp;<strong>file1.dart</strong> bez definovan&eacute;ho n&aacute;zvu <strong>test </strong>a <strong>file2.dart</strong>&nbsp;s definovan&yacute;m&nbsp;<strong>test</strong>.</p>
+<p>Argumenty se zpracovávají postupnì zleva doprava. Zadání <strong>´dart_prep  file1.dart   +test  file2.dart´</strong> zpracuje <strong>file1.dart</strong> bez definovaného názvu <strong>test </strong>a <strong>file2.dart</strong> s definovaným <strong>test</strong>.</p>
 
 <h2>Syntaxe souborù</h2>
 
 <ul>
-	<li>Program oznaèuje ø&aacute;dky vyøezen&eacute; z podm&iacute;nìn&eacute;ho pøekladu koment&aacute;øem <strong>//##</strong>.</li>
-	<li>Prepoprcesor pracuje po ø&aacute;d&iacute;ch, Každ&yacute; pø&iacute;kaz je na zaè&aacute;tku ø&aacute;dku</li>
-	<li>Blok podm&iacute;nìn&eacute;ho pøekladu zaè&iacute;n&aacute; podm&iacute;nkou <strong>//#if &lt;podm&iacute;nka&gt;</strong></li>
-	<li>Blok&nbsp;<strong>//#if</strong> mùže obsahovat nìkolik&nbsp; blokù&nbsp;&nbsp;<strong>//#elif</strong> &lt;podm&iacute;nka&gt; a blok&nbsp;&nbsp;<strong>//#else</strong></li>
-	<li>Blok&nbsp;<strong>//#if&nbsp;</strong>je zakonèen pø&iacute;kazem <strong>//#end</strong>.</li>
-	<li>Je možno použ&iacute;t tak&eacute; jednoduch&eacute;&nbsp;podm&iacute;nky <strong>//#debug</strong> <strong>//#release</strong> a <strong>//#verbose</strong>. Tyto podm&iacute;nky testuj&iacute; existenci pø&iacute;slu&scaron;n&eacute;ho n&aacute;zvu (debug,release a verbose) a nemohou obsahovat else a elif è&aacute;sti.</li>
-	<li>Pro definov&aacute;n&iacute; v n&aacute;zvù v r&aacute;mci souboru se použ&iacute;v&aacute; pø&iacute;kaz <strong>//#define &lt;n&aacute;zvy&gt;</strong>. Zpracov&aacute;n&iacute; konfiguraèn&iacute;ho a bìžn&eacute;ho souboru&nbsp;se li&scaron;&iacute; v tom, že definice v konfiguraèn&iacute;m souboru jsou viditeln&eacute; ve v&scaron;ech pozdìji zpracov&aacute;van&yacute;ch souborech, kdežto definice v bìžn&eacute;m souboru jsou viditeln&eacute; pouze v r&aacute;mci dann&eacute;ho souboru.</li>
+	<li>Program oznaèuje øádky vyøezené z podmínìného pøekladu komentáøem <strong>//##</strong>.</li>
+	<li>Prepoprcesor pracuje po øádích, Každý pøíkaz je na zaèátku øádku</li>
+	<li>Blok podmínìného pøekladu zaèíná podmínkou <strong>//#if <podmínka></strong></li>
+	<li>Blok <strong>//#if</strong> mùže obsahovat nìkolik  blokù  <strong>//#elif</strong> <podmínka> a blok  <strong>//#else</strong></li>
+	<li>Blok <strong>//#if </strong>je zakonèen pøíkazem <strong>//#end</strong>.</li>
+	<li>Je možno použít také jednoduché podmínky <strong>//#debug</strong> <strong>//#release</strong> a <strong>//#verbose</strong>. Tyto podmínky testují existenci pøíslušného názvu (debug,release a verbose) a nemohou obsahovat else a elif èásti.</li>
+	<li>Pro definování v názvù v rámci souboru se používá pøíkaz <strong>//#define <názvy></strong>. Zpracování konfiguraèního a bìžného souboru se liší v tom, že definice v konfiguraèním souboru jsou viditelné ve všech pozdìji zpracovávaných souborech, kdežto definice v bìžném souboru jsou viditelné pouze v rámci danného souboru.</li>
+	<li>Preprocesor podporuje definice znakových konstant. Napøíklad konstanta &#39;A&#39; (znak A v syntaxi jazyka C) se zapíše jako <strong>/*$A*/ </strong>. Teto zápis bude nahrazen výrazem  <strong>/*$A*/0x41</strong>. Jsou podporovány escape sekvence napøíklad &#39;<strong>\n</strong>&#39; se zapíše jako <strong>/*$\n*/</strong>. Program podporuje escape <strong>\\ </strong>, <strong>\r </strong>, <strong>\n</strong> , <strong>\t</strong> , <strong>\v</strong> , <strong>\b</strong> , <strong>\f</strong> , <strong>\a</strong> , <strong>\e</strong> </li>
 </ul>
 
-<p><strong>Syntaxe podm&iacute;nky&nbsp;if</strong></p>
+<p><strong>Syntaxe podmínky if</strong></p>
 
 <ul>
-	<li>Syntaxe podm&iacute;nky if se skl&aacute;d&aacute; z n&aacute;zvù , oper&aacute;torù a z&aacute;vorek.</li>
-	<li>if podporuje oper&aacute;tory <strong>|</strong>&nbsp; (logick&yacute; souèet) a&nbsp; <strong>&amp;</strong> (logick&yacute; souèin). Logick&yacute; souèin m&aacute; vy&scaron;&scaron;&iacute; prioritu).</li>
-	<li>V r&aacute;mci if je možno použ&iacute;t tak&eacute; negaci (<strong>!</strong>),&nbsp;pro negov&aacute;n&iacute; podm&iacute;nky, z&aacute;vorky a pøeddefinovan&eacute; konstanty (<strong>0, 1, true, false</strong>).</li>
+	<li>Syntaxe podmínky if se skládá z názvù , operátorù a závorek.</li>
+	<li>if podporuje operátory <strong>|</strong>  (logický souèet) a  <strong>&</strong> (logický souèin). Logický souèin má vyšší prioritu).</li>
+	<li>V rámci if je možno použít také negaci (<strong>!</strong>), pro negování podmínky, závorky a pøeddefinované konstanty (<strong>0, 1, true, false</strong>).</li>
 </ul>
 
 <p><strong>Syntaxe define</strong></p>
 
 <ul>
-	<li>Parametrem define je prost&yacute; seznam definovan&yacute;ch n&aacute;zvù.</li>
-	<li>V r&aacute;mci define je možno pøed n&aacute;yev zapsat !. T&iacute;m se odstran&iacute; dø&iacute;ve definovan&yacute; n&aacute;zev.</li>
+	<li>Parametrem define je prostý seznam definovaných názvù.</li>
+	<li>V rámci define je možno pøed náyev zapsat !. Tím se odstraní døíve definovaný název.</li>
 </ul>
 
-<p>&nbsp;</p>
+<p> </p>
