@@ -30,7 +30,7 @@ void main(List<String> arguments) async
     {
         args = ['+DEBUG','test.cfg'];
     }
-//#end DEBUG line:29
+//#end DEBUG line:28
 
   if (args.isEmpty)
   {
@@ -54,7 +54,7 @@ Future<int> cmd_main(List<String> args) async
   {
     if (arg.startsWith('@'))
     {
-      if (!await processFile(arg.substring(1), defines, enableAll, !enableAll))
+      if (!await processFile(arg.substring(1), defines, enableAll, false))
       {
         return 1;
       }
