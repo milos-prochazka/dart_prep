@@ -1,4 +1,3 @@
-
 ///
 /// Vyjimka: chyba syntaxe
 ///
