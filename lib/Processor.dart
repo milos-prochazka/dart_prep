@@ -87,29 +87,41 @@ class Processor
             case /*$\\*/(0x5C):
             code = /*$\\*/(0x5C);
             break;
+
+            case /*$s*/(0x73):
+            code = /*$\s*/(0x2F);
+            break;
+
             case /*$a*/(0x61):
             code = 0x07;
             break;
+
             case /*$b*/(0x62):
             code = 0x08;
             break;
+
             case /*$t*/(0x74):
-            code = 0x09;
+            code = /*$\t*/(0x9);
             break;
+
             case /*$n*/(0x6E):
-            code = 0xa;
+            code = /*$\n*/(0xA);
             break;
+
             case /*$v*/(0x76):
-            code = 0x0b;
+            code = /*$\v*/(0xB);
             break;
+
             case /*$f*/(0x66):
-            code = 0xc;
+            code = /*$\f*/(0xC);
             break;
+
             case /*$r*/(0x72):
-            code = 0x0d;
+            code = /*$\r*/(0xD);
             break;
+
             case /*$e*/(0x65):
-            code = 0x1b;
+            code = /*$\e*/(0x1B);
             break;
           }
 
@@ -362,6 +374,6 @@ class Processor
 
         return result;
     }
-//#end if line:331
+//#end if line:343
 
 }

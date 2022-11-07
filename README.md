@@ -18,9 +18,13 @@ Argumenty se zpracovávají postupně zleva doprava. Zadání **´dart\_prep  f
 - Blok podmíněného překladu začíná podmínkou **//#if** 
 - Blok **//#if** může obsahovat několik  bloků  **//#elif** a blok  **//#else**
 - Blok **//#if** je zakončen příkazem **//#end**.
-- Je možno použít také jednoduché podmínky **//#debug** **//#release** a **//#verbose**. Tyto podmínky testují existenci příslušného názvu (debug,release a verbose) a nemohou obsahovat else a elif části.
+- Je možno použít také jednoduché podmínky **//#debug** **//#release** a **//#verbose**.
+  - Tyto podmínky testují existenci příslušného názvu (debug,release a verbose) a nemohou obsahovat else a elif části.
 - Pro definování v názvů v rámci souboru se používá příkaz **//#define** . Zpracování konfiguračního a běžného souboru se liší v tom, že definice v konfiguračním souboru jsou viditelné ve všech později zpracovávaných souborech, kdežto definice v běžném souboru jsou viditelné pouze v rámci danného souboru.
-- Preprocesor podporuje definice znakových konstant. Například konstanta 'A' (znak A v syntaxi jazyka C) se zapíše jako **/\*$A\*/** . Teto zápis bude nahrazen výrazem  **/\*$A\*/0x41**. Jsou podporovány escape sekvence například '**\n**' se zapíše jako **/\*$\n\*/**. Program podporuje escape **\\** , **\r** , **\n** , **\t** , **\v** , **\b** , **\f** , **\a** , **\e** 
+- Preprocesor podporuje definice znakových konstant. Například konstanta 'A' (znak A v syntaxi jazyka C) se zapíše jako **/\*$A\*/** .
+  - Teto zápis bude nahrazen výrazem  **/\*$A\*/0x41**. Jsou podporovány escape sekvence například '**\n**' se zapíše jako **/\*$\n\*/**.
+  - Program podporuje standardní escape **\\** , **\r** , **\n** , **\t** , **\v** , **\b** , **\f** , **\a** , **\e** 
+  - Pro zadání lomítka slouží escape **\s**
 
 **Syntaxe podmínky if**
 
@@ -31,6 +35,6 @@ Argumenty se zpracovávají postupně zleva doprava. Zadání **´dart\_prep  f
 **Syntaxe define**
 
 - Parametrem define je prostý seznam definovaných názvů.
-- V rámci define je možno před náyev zapsat !. Tím se odstraní dříve definovaný název.
+- V rámci define je možno před název zapsat !. Tím se odstraní dříve definovaný název.
 
 

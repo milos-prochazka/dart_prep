@@ -10,7 +10,7 @@ import 'package:dart_prep/Processor.dart';
 final _codec = Utf8Codec(allowMalformed: true);
 
 const String info = '''
-dart_prep v1.1.0
+dart_prep v1.1.1
 Syntax: dart_prep <argument list>
 
 arguments:
